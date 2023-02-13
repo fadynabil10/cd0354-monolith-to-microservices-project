@@ -23,11 +23,11 @@ script:
   - docker tag udagram-reverseproxy fadynabil/udagram-reverseproxy:v4a
   - docker tag udagram-api-feed fadynabil/udagram-api-feed:v4a
   - docker tag udagram-api-user fadynabil/udagram-api-user:v4a
-  - docker tag udagram-frontend fadynabil/udagram-frontend:local
+  - docker tag udagram-frontend fadynabil/udagram-frontend:v6
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push fadynabil/udagram-reverseproxy:v4a
   - docker push fadynabil/udagram-api-feed:v4a
   - docker push fadynabil/udagram-api-user:v4a
-  - docker push fadynabil/udagram-frontend:local
+  - docker push fadynabil/udagram-frontend:v6
