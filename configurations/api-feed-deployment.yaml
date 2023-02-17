@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-feed
+  labels:
+    app: api-feed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-feed
+  template:
+    metadata:
+      labels:
+        app: api-feed
+    spec:
+      containers:
+      - name: api-feed
+        image: fadynabil/udagram-api-feed:v4a
+        imagePullPolicy: Always
+        envFrom:
+          - secretRef:
+              name: env-secret
+          - configMapRef:
+              name: env-config
+          - secretRef:
+              name: aws-secret
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
